@@ -2,13 +2,26 @@
   "name": "commander",
   "version": "1.0.0",
   "description": "命令行",
-  "main": "index.js",
+  "main": "main/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tsc": "tsc -p ./tsconfig.json -watch",
+    "serve": "node main/index.js"
   },
-  "author": "",
+  "bin": {
+    "hhw": "bin/hhw.js"
+  },
+  "author": "hhw",
   "license": "ISC",
   "dependencies": {
-    "commander": "^10.0.1"
+    "chalk": "^3.0.0",
+    "commander": "^10.0.1",
+    "dotenv": "^16.1.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "命令行"
   }
 }

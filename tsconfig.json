@@ -2,13 +2,10 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "outDir": "./hhw/",
+    "outDir": "./main",
     "strict": false,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
     "types": ["node"],
-    "declarationDir": "./hhw/",
+    "declarationDir": "./types",
     "sourceMap": true,
     "declaration": true,
     "lib": ["es2015"]
