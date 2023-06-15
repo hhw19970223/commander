@@ -1,4 +1,5 @@
 # Commander
+> 先将hhw命令注册至全局<font color='red'> npm link ./</font>
 <hr>
 
 ### 目录

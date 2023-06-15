@@ -1,0 +1,11 @@
+export declare function black(str: any): string;
+export declare function red(str: any): string;
+export declare function green(str: any): string;
+export declare function yellow(str: any): string;
+export declare function blue(str: any): string;
+export declare function white(str: any): string;
+export declare function skyBlue(str: any): string;
+export declare function outputInfo(...args: any[]): void;
+export declare function outputErr(...args: any[]): void;
+export declare function outputWarn(...args: any[]): void;
+export declare function outputSucc(...args: any[]): void;

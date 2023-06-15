@@ -34,37 +34,57 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var path = require('path');
-if (__dirname && __dirname.lastIndexOf('main') > -1) {
-    __dirname = path.join(__dirname, '../');
-}
-var chalk = require('chalk');
-var fs = require('fs');
-var dotenv = require('dotenv');
-dotenv.config();
-var hhw = require('./modules/index').hhw;
-var fileUtil = require('./modules/util/file');
-var output = require('./modules/util/output');
-(function requireCmdJS() {
+import { program } from 'commander';
+import { blue, outputErr, outputInfo, skyBlue } from '../util/output.js';
+// const program = new Command();
+export var hhw = program;
+hhw
+    .name('hhw')
+    .usage(blue('欢迎使用hhw插件'))
+    .version(process.env.version);
+hhw
+    .command('*')
+    .action(function () {
     return __awaiter(this, void 0, void 0, function () {
-        var config_path, commands, _i, commands_1, command, command_path;
+        return __generator(this, function (_a) {
+            console.log(skyBlue('欢迎使用hhw插件'));
+            console.log(skyBlue('命令行版本:' + process.env.version));
+            process.exit();
+            return [2 /*return*/];
+        });
+    });
+});
+hhw
+    .command('cal [exp...]')
+    .description('简单算术运算')
+    .action(function (exp) {
+    return __awaiter(this, void 0, void 0, function () {
+        var formula, value;
+        return __generator(this, function (_a) {
+            if (!exp || !exp.length) {
+                outputErr('请输入需要计算的公式');
+            }
+            else {
+                formula = exp.join('');
+                try {
+                    value = eval(formula);
+                    outputInfo(formula, ' = ', value);
+                }
+                catch (e) {
+                    outputErr('计算式有误', formula, e);
+                }
+            }
+            return [2 /*return*/];
+        });
+    });
+});
+hhw
+    .addHelpText('after', "\n  ".concat(skyBlue('需要更多帮助详情请使用 --helpAll'), "\n    "));
+(function () {
+    return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    config_path = path.join(__dirname, 'config');
-                    commands = require(config_path).commands;
-                    if (commands && commands.length) {
-                        for (_i = 0, commands_1 = commands; _i < commands_1.length; _i++) {
-                            command = commands_1[_i];
-                            command_path = path.join(__dirname, 'modules/command', command);
-                            if (!fileUtil(command_path)) {
-                                output.outputRed("\u547D\u4EE4 \u3010".concat(command, "\u3011 \u4E0D\u5B58\u5728"));
-                            }
-                            require(command_path);
-                        }
-                    }
-                    hhw.addHelpText('after', "\n  ".concat(output.skyBlue('需要更多帮助详情请使用 --helpAll'), "\n    "));
-                    return [4 /*yield*/, hhw.parseAsync(process.argv)];
+                case 0: return [4 /*yield*/, hhw.parseAsync(process.argv)];
                 case 1:
                     _a.sent();
                     return [2 /*return*/];
@@ -72,5 +92,4 @@ var output = require('./modules/util/output');
         });
     });
 })();
-module.exports = {};
 //# sourceMappingURL=index.js.map

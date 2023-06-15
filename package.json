@@ -2,10 +2,15 @@
   "name": "commander",
   "version": "1.0.0",
   "description": "命令行",
-  "main": "main/index.js",
+  "main": "bin/hhw.js",
+  "type": "module",
+  "target": "node",
+  "experiments": {
+    "outputModule": true
+  },
   "scripts": {
-    "tsc": "tsc -p ./tsconfig.json -watch",
-    "serve": "node main/index.js"
+    "watch": "tsc -p tsconfig.json -watch",
+    "build": "tsc -p tsconfig.json"
   },
   "bin": {
     "hhw": "bin/hhw.js"
@@ -13,9 +18,10 @@
   "author": "hhw",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^3.0.0",
+    "chalk": "^5.2.0",
     "commander": "^10.0.1",
-    "dotenv": "^16.1.4"
+    "dotenv": "^16.1.4",
+    "inquirer": "^9.2.7"
   },
   "devDependencies": {
     "@types/node": "^20.3.0"
