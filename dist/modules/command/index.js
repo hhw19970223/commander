@@ -37,6 +37,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 import { program } from 'commander';
 import { blue, outputErr, outputInfo, skyBlue } from '../util/output.js';
 // const program = new Command();
+import { createInterface } from 'readline';
+var rl = createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+function promptInput(msg) {
+    return new Promise(function (resolve, reject) {
+        rl.question(blue(msg + ':   '), function (input) {
+            resolve(input);
+        });
+    }).catch(function (err) {
+        console.error(err);
+    });
+}
 export var hhw = program;
 hhw
     .name('hhw')
@@ -75,6 +89,24 @@ hhw
                 }
             }
             return [2 /*return*/];
+        });
+    });
+});
+hhw
+    .command('structure')
+    .description('自动化构建代码')
+    .action(function () {
+    return __awaiter(this, void 0, void 0, function () {
+        var input;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, promptInput('test')];
+                case 1:
+                    input = _a.sent();
+                    console.log('哦吼你成功了', input);
+                    process.exit();
+                    return [2 /*return*/];
+            }
         });
     });
 });

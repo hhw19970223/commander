@@ -1,6 +1,22 @@
 import { Command, program } from 'commander';
 import {blue, outputErr, outputInfo, outputWarn, skyBlue} from '../util/output.js';
 // const program = new Command();
+import { createInterface } from 'readline';
+
+const rl = createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+function promptInput(msg): Promise<any> {
+    return new Promise((resolve, reject) => {
+        rl.question(blue(msg + ':   '), (input: string) => {
+            resolve(input);
+        });
+    }).catch(err => {
+        console.error(err);
+    })
+}
 
 export const hhw = program;
 
@@ -33,7 +49,14 @@ hhw
 
         }
     });
-
+hhw
+    .command('structure')
+    .description('自动化构建代码')
+    .action(async function() {
+        let input = await promptInput('test');
+        console.log('哦吼你成功了', input);
+        process.exit();
+    });
 
 
 hhw
