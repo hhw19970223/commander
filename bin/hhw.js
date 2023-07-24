@@ -4,6 +4,14 @@ import { URL } from 'url'; // in Browser, the URL in native accessible on window
 import { join, dirname } from "path";
 import { fileURLToPath } from 'url';
 
+globalThis.sleep = async (time) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(0);
+        }, time)
+    })
+}
+
 (async function () {
     //定义全局变量
     const __filename = fileURLToPath(import.meta.url);

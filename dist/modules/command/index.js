@@ -35,22 +35,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import { program } from 'commander';
-import { blue, outputErr, outputInfo, skyBlue } from '../util/output.js';
+import { blue, outputErr, outputInfo, skyBlue } from '../utils/output.js';
+import { promptInput, createSpinner, promptListSelect } from '../utils/common.js';
 // const program = new Command();
-import { createInterface } from 'readline';
-var rl = createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
-function promptInput(msg) {
-    return new Promise(function (resolve, reject) {
-        rl.question(blue(msg + ':   '), function (input) {
-            resolve(input);
-        });
-    }).catch(function (err) {
-        console.error(err);
-    });
-}
 export var hhw = program;
 hhw
     .name('hhw')
@@ -88,6 +75,7 @@ hhw
                     outputErr('计算式有误', formula, e);
                 }
             }
+            process.exit();
             return [2 /*return*/];
         });
     });
@@ -105,6 +93,30 @@ hhw
                     input = _a.sent();
                     console.log('哦吼你成功了', input);
                     process.exit();
+                    return [2 /*return*/];
+            }
+        });
+    });
+});
+hhw
+    .command('test')
+    .description('测试')
+    .action(function () {
+    return __awaiter(this, void 0, void 0, function () {
+        var spinner, rst;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    spinner = createSpinner({ color: 'yellow', text: 'test' });
+                    spinner.start();
+                    return [4 /*yield*/, sleep(5000)];
+                case 1:
+                    _a.sent();
+                    spinner.succeed('成功');
+                    return [4 /*yield*/, promptListSelect(['vue', 'react', { name: 'dom1', value: 'dom2' }, 'vite'])];
+                case 2:
+                    rst = _a.sent();
+                    console.log(rst);
                     return [2 /*return*/];
             }
         });

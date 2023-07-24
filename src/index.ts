@@ -1,7 +1,7 @@
 import { join } from "path";
 import { config as dotenvConfig } from 'dotenv';
-import { importESM } from './modules/util/file.js';
-import { outputErr, skyBlue, outputInfo } from './modules/util/output.js';
+import { importESM } from './modules/utils/file.js';
+import { outputErr, skyBlue, outputInfo } from './modules/utils/output.js';
 
 dotenvConfig({path: join(__projectPath, '.env')});//解析环境参数
 

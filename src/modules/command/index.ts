@@ -1,22 +1,8 @@
 import { Command, program } from 'commander';
-import {blue, outputErr, outputInfo, outputWarn, skyBlue} from '../util/output.js';
+import { blue, outputErr, outputInfo, outputWarn, skyBlue } from '../utils/output.js';
+import {promptInput, createSpinner, promptListSelect} from '../utils/common.js';
 // const program = new Command();
-import { createInterface } from 'readline';
 
-const rl = createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
-
-function promptInput(msg): Promise<any> {
-    return new Promise((resolve, reject) => {
-        rl.question(blue(msg + ':   '), (input: string) => {
-            resolve(input);
-        });
-    }).catch(err => {
-        console.error(err);
-    })
-}
 
 export const hhw = program;
 
@@ -48,6 +34,7 @@ hhw
             }
 
         }
+        process.exit();
     });
 hhw
     .command('structure')
@@ -57,8 +44,23 @@ hhw
         console.log('哦吼你成功了', input);
         process.exit();
     });
+hhw
+    .command('test')
+    .description('测试')
+    .action(async function () {
+        let spinner = createSpinner({color: 'yellow', text: 'test'});
+        spinner.start();
+        await sleep(5000);
+        spinner.succeed('成功');
 
+        let rst = await promptListSelect(['vue', 'react', {name: 'dom1', value: 'dom2'}, 'vite'])
 
+        console.log(rst);
+
+        // spinner.fail("请求失败，正在重试...");
+        // spinner.stop();
+        // process.exit();
+    })
 hhw
     .addHelpText('after',`
   ${skyBlue('需要更多帮助详情请使用 --helpAll')}

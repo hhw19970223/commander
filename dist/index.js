@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 import { join } from "path";
 import { config as dotenvConfig } from 'dotenv';
-import { importESM } from './modules/util/file.js';
+import { importESM } from './modules/utils/file.js';
 dotenvConfig({ path: join(__projectPath, '.env') }); //解析环境参数
 export function requireCmdJS() {
     return __awaiter(this, void 0, void 0, function () {
